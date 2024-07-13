@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GameHomePage</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <h1>Guess The Word</h1>
+    <h2 th:text="${randomWord}"></h2>
+    <h3 th:text="'Remaining Tries : '+ ${remainingTries}">Remaining Tries</h3>
+    <hr>
+    <div>
+        <form action="home" method="GET">
+            <label for="word">Enter a character:</label>
+            <input type="text" id="word" name="char" required>
+            <button type="submit" th:disabled="${remainingTries} == 0">Check</button>
+        </form>
+        <form action="reload" method="GET">
+            <button type="submit">Reload</button>
+        </form>
+    </div>
+    <div th:if="${remainingTries} == 0" class="game-over">
+        You Lost the Game!
+    </div>
+</body>
+</html>
